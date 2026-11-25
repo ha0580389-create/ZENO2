@@ -1,0 +1,17 @@
+{
+  "banner": {
+    "ar": {
+      "title": "ZENO",
+      "subtitle": "متجر رقمي قيد التجهيز. ستظهر الخدمات المعتمدة هنا بعد مراجعتها."
+    },
+    "en": {
+      "title": "ZENO",
+      "subtitle": "Digital store preview. Approved services will appear here after review."
+    }
+  },
+  "games": [],
+  "support": {
+    "ar": "سيتم إضافة قنوات الدعم بعد اعتمادها.",
+    "en": "Support channels will be added once confirmed."
+  }
+}
