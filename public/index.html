@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>ZENO — متجر رقمي</title>
+<style>
+:root{color-scheme:dark;--bg:#090909;--panel:#151515;--gold:#d5ad53;--muted:#a9a9a9;--line:#292929}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#29200d 0,transparent 34%),var(--bg);color:#f7f4ec;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.wrap{max-width:960px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 26px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:24px;letter-spacing:2px}.mark{height:42px;width:42px;border:1px solid var(--gold);border-radius:14px;display:grid;place-items:center;color:var(--gold);font-weight:900}
+button{border:1px solid #5b4822;background:#17130a;color:#f2d58e;border-radius:12px;padding:10px 15px;font:inherit;cursor:pointer}
+.hero{border:1px solid #40331b;background:linear-gradient(135deg,#1b180f,#121212 65%);border-radius:24px;padding:34px 28px;box-shadow:0 18px 60px #0008}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(34px,7vw,58px);margin:10px 0}.hero p{color:#c8c1b1;line-height:1.9;max-width:620px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px}.pill{background:#111;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#d5d0c6;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:26px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}.card h2{margin:0 0 8px;font-size:18px}.card p{color:var(--muted);line-height:1.7;margin:0}
+.status{display:inline-flex;align-items:center;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:#d2a947;display:inline-block}.footer{color:#777;font-size:12px;text-align:center;padding:28px 0}
+.empty{border:1px dashed #514323;border-radius:18px;padding:24px;text-align:center;color:#c8c1b1;margin-top:18px;line-height:1.9}
+@media(max-width:520px){.wrap{padding:16px}.hero{padding:26px 20px}.top{padding-bottom:18px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div class="brand"><span class="mark">Z</span><span>ZENO</span></div>
+    <button id="langBtn" type="button">English</button>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">DIGITAL STORE</div>
+    <h1 id="title">متجرك الرقمي يبدأ من هنا</h1>
+    <p id="subtitle">واجهة ZENO الجديدة متصلة بالخادم. يتم تجهيز الكتالوج وإضافة الخدمات المعتمدة قبل تفعيل الطلبات والدفع.</p>
+    <div class="row">
+      <span class="pill status"><span class="dot"></span><span id="statusText">جارٍ فحص اتصال الخادم…</span></span>
+      <span class="pill" id="catalogCount">0 خدمة</span>
+    </div>
+  </section>
+  <section class="grid">
+    <article class="card"><h2 id="card1Title">كتالوج واضح</h2><p id="card1Text">تظهر الخدمات المعتمدة وأسعارها من الخادم مباشرة، دون تثبيت أسعار وهمية داخل التطبيق.</p></article>
+    <article class="card"><h2 id="card2Title">حماية البيانات</h2><p id="card2Text">لا تُطلب كلمات مرور حسابات الألعاب، ولا توضع مفاتيح API داخل التطبيق.</p></article>
+    <article class="card"><h2 id="card3Title">متابعة الحالة</h2><p id="card3Text">سيتم تفعيل متابعة الطلبات بعد اكتمال إعداد الدفع والتشغيل الآمن.</p></article>
+  </section>
+  <section id="catalogArea" class="empty">لا توجد خدمات منشورة حاليًا. ستظهر الخدمات بعد اعتمادها وإضافتها إلى الكتالوج.</section>
+  <footer class="footer">ZENO · <span id="footerText">نسخة معاينة — الطلبات والدفع غير مفعّلين</span></footer>
+</main>
+<script>
+(function(){
+  var lang='ar';
+  var copy={
+    ar:{title:'متجرك الرقمي يبدأ من هنا',subtitle:'واجهة ZENO الجديدة متصلة بالخادم. يتم تجهيز الكتالوج وإضافة الخدمات المعتمدة قبل تفعيل الطلبات والدفع.',status:'الخادم متصل',fail:'تعذر الاتصال بالخادم',count:'خدمة',c1:'كتالوج واضح',t1:'تظهر الخدمات المعتمدة وأسعارها من الخادم مباشرة، دون تثبيت أسعار وهمية داخل التطبيق.',c2:'حماية البيانات',t2:'لا تُطلب كلمات مرور حسابات الألعاب، ولا توضع مفاتيح API داخل التطبيق.',c3:'متابعة الحالة',t3:'سيتم تفعيل متابعة الطلبات بعد اكتمال إعداد الدفع والتشغيل الآمن.',empty:'لا توجد خدمات منشورة حاليًا. ستظهر الخدمات بعد اعتمادها وإضافتها إلى الكتالوج.',footer:'نسخة معاينة — الطلبات والدفع غير مفعّلين',switch:'English'},
+    en:{title:'Your digital store starts here',subtitle:'The new ZENO interface is connected to its backend. The catalog is being prepared before checkout and payments are enabled.',status:'Server connected',fail:'Server connection failed',count:'services',c1:'Clear catalog',t1:'Approved services and prices are loaded from the backend, not hard-coded into the app.',c2:'Data protection',t2:'No game-account passwords are requested, and API secrets are never placed in the app.',c3:'Order tracking',t3:'Order tracking will be enabled after payment and secure fulfillment are ready.',empty:'No services are published yet. Approved services will appear here after they are added to the catalog.',footer:'Preview build — checkout and payments are disabled',switch:'العربية'}
+  };
+  function text(id,value){var el=document.getElementById(id);if(el)el.textContent=value}
+  function render(){
+    var c=copy[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+    ['title','subtitle','statusText','card1Title','card1Text','card2Title','card2Text','card3Title','card3Text','footerText','langBtn'].forEach(function(k){
+      var map={statusText:'status',card1Title:'c1',card1Text:'t1',card2Title:'c2',card2Text:'t2',card3Title:'c3',card3Text:'t3',footerText:'footer',langBtn:'switch'};
+      text(k,c[map[k]||k]);
+    });
+  }
+  document.getElementById('langBtn').addEventListener('click',function(){lang=lang==='ar'?'en':'ar';render()});
+  fetch('/api/health').then(function(r){if(!r.ok)throw new Error('health');return r.json()}).then(function(d){
+    text('statusText',copy[lang].status);
+    var count=Number(d.catalogItems||0);
+    text('catalogCount',count+' '+copy[lang].count);
+  }).catch(function(){text('statusText',copy[lang].fail)});
+  fetch('/api/catalog').then(function(r){if(!r.ok)throw new Error('catalog');return r.json()}).then(function(d){
+    var list=Array.isArray(d.games)?d.games:[];
+    text('catalogCount',list.length+' '+copy[lang].count);
+    if(list.length){document.getElementById('catalogArea').className='grid';document.getElementById('catalogArea').textContent=list.map(function(item){return (item.name&&item.name.ar)||item.name||item.slug}).join(' · ')}
+  }).catch(function(){});
+  render();
+})();
+</script>
+</body>
+</html>
