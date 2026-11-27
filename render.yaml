@@ -4,11 +4,21 @@ services:
     runtime: node
     plan: free
     region: frankfurt
-    buildCommand: npm run check
-    startCommand: npm start
+    buildCommand: node scripts/restore.js && npm run check
+    startCommand: node scripts/restore.js && npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
         value: 22.16.0
-      - key: ORDERS_ENABLED
+      - key: DATA_DIR
+        value: /tmp/zeno-data
+      - key: ORDERS_OPEN
         value: "false"
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: SUPPLIER_API_URL
+        value: https://smmraydar.com/api/v2
+      - key: SUPPLIER_API_KEY
+        sync: false
+      - key: ADMIN_API_TOKEN
+        sync: false
