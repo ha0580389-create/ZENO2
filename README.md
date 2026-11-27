@@ -1,27 +1,21 @@
 # ZENO
 
-Mobile-first bilingual storefront preview and read-only Node.js API.
+ZENO is a bilingual Arabic/English mobile-first digital top-up storefront preview.
 
-## Run locally
+## Deployment bootstrap
 
-```bash
-npm run check
-npm start
-```
+The repository restores the complete editable project from four text payload parts in `.bundle/` using `scripts/restore.js`. Render runs this script before validation and start. The downloadable source ZIP contains ordinary editable files.
 
-Open http://localhost:3000.
+## API
 
-## Read-only API
+- `GET /api/health`
+- `GET /api/catalog`
+- Checkout remains disabled: `ORDERS_OPEN=false`.
 
-- GET /api/health
-- GET /api/catalog
+## Supplier integration
 
-Checkout, payment handling, supplier calls, and order fulfillment are disabled in this preview. No API secret or payment credential is required.
+The supplier module only performs read-only balance and service checks in this version. It does not submit top-up orders. Put `SUPPLIER_API_KEY` and `ADMIN_API_TOKEN` only in Render Environment settings; never place them in HTML or Git.
 
-## Render
+## Preview deployment
 
-The repository includes a free Frankfurt web-service configuration in render.yaml. The preview does not store or accept orders and does not require a persistent disk.
-
-## AppCreator24
-
-A standalone HTML wrapper will be prepared once the deployed Render hostname is confirmed. Never place supplier keys or admin secrets in the mobile app.
+`render.yaml` requests the free Frankfurt service, no persistent disk, and temporary data storage. This preview is not suitable for real orders or customer payments.
